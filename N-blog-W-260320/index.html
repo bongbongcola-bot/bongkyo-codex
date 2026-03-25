@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>네이버 블로그 글쓰기 스튜디오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero-panel">
+      <p class="eyebrow">Naver Blog Draft Studio</p>
+      <h1>장소와 사진만 있으면 네이버 블로그 초안을 바로 만드는 웹페이지</h1>
+      <p class="hero-copy">
+        촬영장소, 샘플사진, 키워드, 특징을 입력하면 키워드를 포함한 제목과
+        네이버 블로그 업로드용 본문 초안을 생성합니다. 결과는 html, md, text 형식으로 바로 전환할 수 있습니다.
+      </p>
+    </section>
+
+    <section class="grid-layout">
+      <form class="panel input-panel" id="blogForm">
+        <div class="panel-head">
+          <h2>입력</h2>
+          <p>네이버 SEO를 고려한 제목과 본문 생성을 위한 기본 정보</p>
+        </div>
+
+        <label class="field">
+          <span>촬영장소</span>
+          <input id="placeInput" type="text" placeholder="예: 성수동 브런치 카페" required>
+        </label>
+
+        <label class="field">
+          <span>샘플사진 촬영자</span>
+          <input id="authorInput" type="text" placeholder="예: 김민지" required>
+        </label>
+
+        <label class="field">
+          <span>키워드</span>
+          <input id="keywordInput" type="text" placeholder="예: 성수 브런치" required>
+        </label>
+
+        <label class="field">
+          <span>특징</span>
+          <textarea id="featuresInput" rows="6" placeholder="예: 채광이 좋음, 좌석 간격이 넓음, 사진이 잘 나옴, 대표 메뉴가 깔끔함" required></textarea>
+        </label>
+
+        <label class="field">
+          <span>샘플사진</span>
+          <input id="photoInput" type="file" accept="image/*" multiple>
+        </label>
+
+        <section class="preview-box">
+          <div>
+            <p class="preview-title">샘플사진 미리보기</p>
+            <p id="previewText" class="preview-text">최대 5장까지 업로드할 수 있고, 각 사진마다 설명을 적으면 본문 생성에 함께 반영됩니다.</p>
+          </div>
+          <div id="previewGallery" class="preview-gallery"></div>
+        </section>
+
+        <button class="primary-button" type="submit">블로그 글 생성</button>
+      </form>
+
+      <section class="panel output-panel" aria-live="polite">
+        <div class="panel-head">
+          <h2>출력</h2>
+          <p>제목과 블로그글을 원하는 형식으로 확인하고 복사</p>
+        </div>
+
+        <div class="format-tabs" role="tablist" aria-label="출력 형식 선택">
+          <button class="tab-button is-active" type="button" data-format="html" role="tab" aria-selected="true">HTML</button>
+          <button class="tab-button" type="button" data-format="md" role="tab" aria-selected="false">MD</button>
+          <button class="tab-button" type="button" data-format="text" role="tab" aria-selected="false">TEXT</button>
+        </div>
+
+        <div class="title-box">
+          <div>
+            <p class="section-label">생성 제목</p>
+            <h3 id="generatedTitle">아직 생성된 제목이 없습니다.</h3>
+          </div>
+          <button class="secondary-button" id="copyButton" type="button">복사</button>
+        </div>
+
+        <label class="field output-field">
+          <span>생성 결과</span>
+          <textarea id="resultOutput" rows="22" spellcheck="false"></textarea>
+        </label>
+
+        <p class="helper-text">
+          생성 결과는 네이버 블로그용 정보형 문단으로 정리되며, 본문 안에 샘플사진 배치 위치가 함께 표시됩니다.
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
